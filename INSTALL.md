@@ -9,6 +9,11 @@
     ./setup_anaconda.sh anaconda espnet 3.8
     make TH_VERSION=1.8.1 CUDA_VERSION=11.1
     # or make TH_VERSION=1.9.0 CUDA_VERSION=11.1
+    # or make TH_VERSION=1.8.1 CUDA_VERSION=10.2
+
+
+    # apt-get install wget subversion git
+    # apt install automake autoconf unzip sox gfortran libtool zlib1g libtool zlib1g-dev svn
 
     cd espnet/tools/kaldi/tools
     extras/check_dependencies.sh

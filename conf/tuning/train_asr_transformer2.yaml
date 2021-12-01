@@ -45,7 +45,7 @@ scheduler: warmuplr
 scheduler_conf:
     warmup_steps: 20000
     
-    specaug: specaug
+specaug: specaug
 specaug_conf:
     apply_time_warp: true
     time_warp_window: 5

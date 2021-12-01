@@ -13,7 +13,7 @@
 
 
     # apt-get install wget subversion git
-    # apt install automake autoconf unzip sox gfortran libtool zlib1g libtool zlib1g-dev svn
+    # apt install automake autoconf unzip sox gfortran libtool zlib1g libtool zlib1g-dev
 
     cd espnet/tools/kaldi/tools
     extras/check_dependencies.sh

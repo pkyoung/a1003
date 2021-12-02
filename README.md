@@ -23,9 +23,9 @@
     ln -s /home/work/a1003/models/ref1x /home/work/logs/ref1x
 
 ## Try Apps
-    * `Visual Studio Code`
-    * `Console`
-    * `Tensorboard`
+* `Visual Studio Code`
+* `Console`
+* `Tensorboard`
 
 ## Download scripts
 
@@ -39,7 +39,7 @@
 
 # Train ASR
 
-## Choie: Set training corpus
+## Choice: Set training corpus
 
     cat data/ks/uttid.01 data/ks/uttid.03 data/ks/uttid.05 > data/ks/uttid.train
     cat data/ks/uttid.01 data/ks/uttid.03 > data/ks/uttid.train
@@ -121,10 +121,12 @@
 
 * 모델 위치
 
+```
     /home/work/a1003/models/ref01/valid.acc.ave_10best.pth
     /home/work/a1003/models/ref03/valid.acc.ave_10best.pth
     /home/work/a1003/models/ref2x/valid.acc.ave_10best.pth
     /home/work/a1003/models/ref3x/valid.acc.ave_10best.pth
+```
 
 * tensorboard
 
@@ -147,15 +149,17 @@
 ## Evaluate mydata with pretrained models
 
 * Edit inference.sh and run it
-
+```
     model=/home/work/a1003/models/ref01/valid.acc.ave_10best.pth
     model=/home/work/a1003/models/ref03/valid.acc.ave_10best.pth
     model=/home/work/a1003/models/ref2x/valid.acc.ave_10best.pth
     model=/home/work/a1003/models/ref3x/valid.acc.ave_10best.pth
 
     bash inference.sh
+```
 
 * Measure CER/WER
 
-    python local/uttcer.py data/mydata/text result/text
-
+```
+python local/uttcer.py data/mydata/text result/text
+```

@@ -8,6 +8,8 @@ model=exp/exp01a/37epoch.pth_
 nj=8
 # End of Configuraiton
 
+source path.sh
+
 mkdir -p $odir/log
 mdir=$(dirname $model)
 

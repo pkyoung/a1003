@@ -163,3 +163,20 @@
 ```
 python local/uttcer.py data/mydata/text result/text
 ```
+
+# OpenAI Whisper
+
+* https://github.com/openai/whisper
+* Upgrade torch version
+```
+import torch
+torch.__version__
+```
+
+```
+/opt/conda/bin/python3 -m pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+```
+```
+pip install torch==1.9.0
+```
+

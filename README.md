@@ -167,7 +167,8 @@ python local/uttcer.py data/mydata/text result/text
 # OpenAI Whisper
 
 * https://github.com/openai/whisper
-* Upgrade torch version
+
+## Upgrade torch version
 ```
 import torch
 torch.__version__
@@ -180,3 +181,14 @@ torch.__version__
 pip install torch==1.9.0
 ```
 
+## Install
+```
+pip install git+https://github.com/openai/whisper.git 
+```
+
+## Inference
+```
+git clone https://github.com/openai/whisper
+cd whisper
+whisper tests/jfk.flac --model tiny
+```

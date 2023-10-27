@@ -11,8 +11,18 @@ See [ESPnet Installation] page.
 
         (base)$ cd ~/a1003/espnet/tools
         (base)$ ./setup_anaconda.sh $HOME/miniforge3 espnet 3.8
-        (base)$ make TH_VERSION=2.0.1 CUDA_VERSION=11.8
+        (base)$ make
         (base)$ git clone --depth 1 https://github.com/kaldi-asr/kaldi
+
+On error, try one of
+
+        (base)$ make TH_VERSION=2.0.1 CUDA_VERSION=11.8
+
+        (base)$ make TH_VERSION=1.7.1 CUDA_VERSION=11.8
+
+To clean installation
+
+        (base)$ conda env remove -n espnet
 
 [ESPnet Installation]: https://espnet.github.io/espnet/installation.html
 

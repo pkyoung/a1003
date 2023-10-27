@@ -2,14 +2,14 @@
 
 # 실습 내용
 ## Setup
-See [[Setup.md]]
+See [Setup.md](./Setup.md)
 * Conda
 * Editor
 * Jupyter
 
 
 ## Error Metric
-See [[Metric.md]]
+See [Metric.md](./Metric.md)
 * Edit distnace
 * CER and WER
 
@@ -20,18 +20,18 @@ In Jupyter Lab, open `play-wav.ipynb`
 * Specaug
 
 ## Install Espnet
-See [[ESPnet.md]]
+See [ESPnet.md](./ESPnet.md)
 
 ## ASR with ESPnet
-See [[ESPnet.md]]
+See [ESPnet.md](./ESPnet.md)
 * Data preparation
 * Training
 * Asess
 
 ## ASR with OpenAI Whisper and Whiser-X
-See [[Whisper.md]]
+See [Whisper.md](./Whisper.md)
 
 ## ESPnet with BackendAI
-Obsolete. See [[ESPnet-BackendAI.md]]
+Obsolete. See [ESPnet-BackendAI.md](./ESPnet-BackendAI.md)
 
 

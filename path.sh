@@ -1,14 +1,14 @@
-MAIN_ROOT=/opt/espnet
-KALDI_ROOT=/opt/kaldi
+MAIN_ROOT=$HOME/a1003/espnet
 
-export PATH=$PWD/utils/:$KALDI_ROOT/tools/openfst/bin:$PATH
-[ ! -f $KALDI_ROOT/tools/config/common_path.sh ] && echo >&2 "The standard file $KALDI_ROOT/tools/config/common_path.sh is not present -> Exit!" && exit 1
-. $KALDI_ROOT/tools/config/common_path.sh
+export PATH=$PWD/utils/:$PATH
 export LC_ALL=C
 
-. "${MAIN_ROOT}"/tools/activate_python.sh && . "${MAIN_ROOT}"/tools/extra_path.sh
-export PATH=$MAIN_ROOT/utils:$MAIN_ROOT/espnet/bin:$PATH
-export PATH=$KALDI_ROOT/tools/sctk/bin:${KALDI_ROOT}/tools/sph2pipe_v2.5:$PATH
+if [ -f "${MAIN_ROOT}"/tools/activate_python.sh ]; then
+    . "${MAIN_ROOT}"/tools/activate_python.sh
+else
+    echo "[INFO] "${MAIN_ROOT}"/tools/activate_python.sh is not present"
+fi
+. "${MAIN_ROOT}"/tools/extra_path.sh
 
 export OMP_NUM_THREADS=1
 
@@ -17,5 +17,7 @@ export PYTHONIOENCODING=UTF-8
 
 # You need to change or unset NCCL_SOCKET_IFNAME according to your network environment
 # https://docs.nvidia.com/deeplearning/sdk/nccl-developer-guide/docs/env.html#nccl-socket-ifname
-#export NCCL_SOCKET_IFNAME="^lo,docker,virbr,vmnet,vboxnet"
-export NCCL_SOCKET_IFNAME="en"
+export NCCL_SOCKET_IFNAME="^lo,docker,virbr,vmnet,vboxnet"
+
+# NOTE(kamo): Source at the last to overwrite the setting
+# . local/path.sh

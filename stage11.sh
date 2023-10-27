@@ -5,32 +5,29 @@ set -e
 set -u
 set -o pipefail
 
-train_set=train
-valid_set=dev
-test_sets=test
-
 ./asr.sh \
-    --num_nodes 1 \
-    --stage 11 \
-    --stop_stage 11 \
     --skip_data_prep false \
     --skip_train false \
     --skip_eval false \
-    --speed_perturb_factors "" \
+    --lang ko \
     --ngpu 1 \
     --nj 8 \
-    --feats_type extracted \
-    --feats_normalize global_mvn \
-    --host localhost \
-    --use_lm false \
+    --stage 11 \
+    --stop_stage 11 \
+    --gpu_inference true \
+    --inference_nj 1 \
     --token_type char \
-    --asr_exp exp/exp01a \
-    --asr_config conf/tuning/train_asr_transformer2.yaml \
-    --asr_args "--batch_size 32 --accum_grad 4" \
-    --train_set "${train_set}" \
-    --valid_set "${valid_set}" \
-    --test_sets "${test_sets}" \
-    --inference_nj 8 \
-    --gpu_inference false \
-    --inference_asr_model "valid.acc.ave_10best.pth" \
-    --srctexts "data/train/text data/dev/text" "$@"
+    --feats_normalize 'global_mvn' \
+    --max_wav_duration 30 \
+    --speed_perturb_factors "" \
+    --audio_format "flac.ark" \
+    --feats_type raw \
+    --use_lm false \
+    --asr_exp exp/myasr \
+    --asr_config conf/train_asr_conformer.yaml \
+    --asr_args "--max_epoch 30 --keep_nbest_model 30 --batch_bins 2000000" \
+    --inference_config conf/decode_asr.yaml \
+    --inference_asr_model valid.acc.ave.pth \
+    --train_set train \
+    --valid_set dev \
+    --test_sets test

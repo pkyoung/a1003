@@ -8,8 +8,9 @@ See [ESPnet Installation] page.
         (base)$ cd ~/a1003
 
         (base)$ git clone https://github.com/espnet/espnet
-        (base)$ ./setup_anaconda.sh $HOME/miniforge3 espnet 3.8
 
+        (base)$ cd ~/a1003/espnet/tools
+        (base)$ ./setup_anaconda.sh $HOME/miniforge3 espnet 3.8
         (base)$ make TH_VERSION=2.0.1 CUDA_VERSION=11.8
         (base)$ git clone --depth 1 https://github.com/kaldi-asr/kaldi
 

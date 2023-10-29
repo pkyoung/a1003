@@ -111,29 +111,28 @@ Do it step by step (for convenience of explanation)
   - `Generate character level token_list from dump/raw/org/train/text`
   - `Generate token_list from dump/raw/org/train/text using BPE`
 
-Run one of `stage3-5.sh` and `stage3-5use_bpe.sh`
+* Edit `--stage 3` and `--stop_stage 5` in `train.sh`, then run:
 
-        (espnet)$ bash stage3-5.sh
+        (espnet)$ bash train.sh
 
-or
-
-        (espnet)$ bash stage3-5use_bpe.sh
-
-Open ``
+Open `data/ko_token_list/char/tokens.txt` or `data/ko_token_list/bpe_unigram5000/tokens.txt`
 
 ### run asr.sh: stage10
 
 * Stage 10: `ASR collect stats: train_set=dump/raw/train, valid_set=dump/raw/dev`
+* Edit `--stage 10` and `--stop_stage 10` in `train.sh`, then run:
 
-        (espnet)$ bash stage10.sh
+        (espnet)$ bash train.sh
 
 * `Successfully finished. [elapsed=1153s,240s]`
+* See `asr_stats_`...
 
 ### run asr.sh: stage11
 
 * Stage 11: `ASR Training: train_set=dump/raw/train, valid_set=dump/raw/dev`
+* Edit `--stage 11` and `--stop_stage 11` in `train.sh`, then run:
 
-        (espnet)$ bash stage11.sh
+        (espnet)$ bash train.sh
 
 ### Monitoring training with tensorboard
 

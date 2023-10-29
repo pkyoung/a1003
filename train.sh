@@ -23,9 +23,8 @@ set -o pipefail
     --audio_format "flac.ark" \
     --feats_type raw \
     --use_lm false \
-    --asr_exp exp/myasr \
-    --asr_config conf/train_asr_conformer.yaml \
-    --asr_args "--max_epoch 30 --keep_nbest_model 30 --batch_bins 2000000" \
+    --asr_exp exp/tf \
+    --asr_config conf/train_asr_transformer2.yaml \
     --inference_config conf/decode_asr.yaml \
     --inference_asr_model valid.acc.ave.pth \
     --train_set train \

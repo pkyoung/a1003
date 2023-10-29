@@ -1,47 +1,46 @@
 
 # Install ESPnet and setting up enviroment
 
+## Cleanup my account
+
+        $ rm -rf ~/a1003
+
 ## Install ESPnet
 See [ESPnet Installation] page.
 
-        (base)$ mkdir ~/a1003
-        (base)$ cd ~/a1003
+        $ export PATH=/usr/local/cuda/bin:$PATH
+        $ mkdir -p ~/a1003
+        $ cd ~/a1003
 
-        (base)$ git clone https://github.com/espnet/espnet
+        $ git clone https://github.com/espnet/espnet
 
-        (base)$ cd ~/a1003/espnet/tools
-        (base)$ ./setup_anaconda.sh $HOME/miniforge3 espnet 3.8
-        (base)$ make
-        (base)$ git clone --depth 1 https://github.com/kaldi-asr/kaldi
-
-On error, try one of
-
-        (base)$ make TH_VERSION=2.0.1 CUDA_VERSION=11.8
-
-        (base)$ make TH_VERSION=1.7.1 CUDA_VERSION=11.8
+        $ cd ~/a1003/espnet/tools
+        $ ./setup_anaconda.sh miniconda espnet 3.8
+        $ make
+        $ git clone --depth 1 https://github.com/kaldi-asr/kaldi
 
 To clean installation
 
-        (base)$ conda env remove -n espnet
+        $ conda env remove -n espnet
 
 [ESPnet Installation]: https://espnet.github.io/espnet/installation.html
 
 ## Now download a1003
 
-        (base)$ cd ~/a1003
-        (base)$ git clone https://github.com/pkyoung/a1003 ./asr-train
+        $ cd ~/a1003
+        $ git clone https://github.com/pkyoung/a1003 ./asr-train
 
-        (base)$ cd ~/a1003/asr-train
-        (base)$ ls
+        $ cd ~/a1003/asr-train
+        $ ls
 
-        (base)$ ls -l ~/a1003/espnet/egs2/TEMPLATE/asr1/
-        (base)$ ls -l ~/a1003/espnet/egs2/ksponspeech/asr1/
+        $ ls -l ~/a1003/espnet/egs2/TEMPLATE/asr1/
+        $ ls -l ~/a1003/espnet/egs2/ksponspeech/asr1/
 
-        (base)$ ln -sf ~/a1003/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
+        $ ln -sf ~/a1003/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
 
 Edit `path.sh`.
 
-        (base)$ source path.sh
+        $ source path.sh
         (espnet)$ ls
 
 # Training ASR Model with ESPnet
@@ -49,7 +48,12 @@ Edit `path.sh`.
 ## Prepare data: train/valid/test
 
 ### Select train data
-We will use data from AIHub [[KsponSpeech]]. Choose one of following 3 options:
+We will use data from AIHub [[KsponSpeech]]. List of files are mode for convenience.
+
+        (espnet)$ cd ~/a1003/asr-train/data/
+        (espnet)$ tar xvzf ks.tgz
+
+Choose one of following 3 options:
 
         (espnet)$ cd ~/a1003/asr-train/data/ks
         (espnet)$ cat uttid.01 uttid.03 uttid.05 > uttid.train
@@ -74,7 +78,7 @@ Prepare data director in Kaldi format. We need 4 files.
 * `utt2spk`: mapping of utterence id to speaker id
 * `spk2utt`: mapping of speaker id to utterence id
 
-        (base)$ source path.sh
+        (espnet)$ cd ~/a1003/asr-train
 
         (espnet)$ mkdir -p data/train
         (espnet)$ filter_scp.pl data/ks/uttid.train data/ks/wav.scp > data/train/wav.scp
@@ -82,13 +86,13 @@ Prepare data director in Kaldi format. We need 4 files.
         (espnet)$ awk '{print $1 " " $1}' data/train/wav.scp > data/train/spk2utt
         (espnet)$ cp data/train/spk2utt data/train/utt2spk
 
-        (espnet)$ mdkir -p data/dev
+        (espnet)$ mkdir -p data/dev
         (espnet)$ filter_scp.pl data/ks/uttid.dev data/ks/wav.scp > data/dev/wav.scp
         (espnet)$ filter_scp.pl data/ks/uttid.dev data/ks/text > data/dev/text
         (espnet)$ awk '{print $1 " " $1}' data/dev/wav.scp > data/dev/spk2utt
         (espnet)$ cp data/dev/spk2utt data/dev/utt2spk
 
-        (espnet)$ mdkir -p data/test
+        (espnet)$ mkdir -p data/test
         (espnet)$ filter_scp.pl data/ks/uttid.test data/ks/wav.scp > data/test/wav.scp
         (espnet)$ filter_scp.pl data/ks/uttid.test data/ks/text > data/test/text
         (espnet)$ awk '{print $1 " " $1}' data/test/wav.scp > data/test/spk2utt
@@ -101,13 +105,21 @@ Do it step by step (for convenience of explanation)
 ### run asr.sh: stage3-5
 
 * Stage 3: `Format wav.scp: data/ -> dump/raw`
+  - elapsed=1126s,93s,6s
 * Stage 4: `Remove long/short data: dump/raw/org -> dump/raw`
 * Stage 5:
   - `Generate character level token_list from dump/raw/org/train/text`
+  - `Generate token_list from dump/raw/org/train/text using BPE`
 
-        (espnet)$ bash stage10.sh
+Run one of `stage3-5.sh` and `stage3-5use_bpe.sh`
 
-* `Successfully finished. [elapsed=498s]`
+        (espnet)$ bash stage3-5.sh
+
+or
+
+        (espnet)$ bash stage3-5use_bpe.sh
+
+Open ``
 
 ### run asr.sh: stage10
 
@@ -115,7 +127,7 @@ Do it step by step (for convenience of explanation)
 
         (espnet)$ bash stage10.sh
 
-* `Successfully finished. [elapsed=240s]`
+* `Successfully finished. [elapsed=1153s,240s]`
 
 ### run asr.sh: stage11
 

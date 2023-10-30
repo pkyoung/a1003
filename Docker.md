@@ -15,14 +15,14 @@
         sudo apt-get install -y nvidia-docker2
         sudo systemctl restart docker
 
-        sudo usermod -a -G docker etriai02
+        sudo usermod -a -G docker etriai05
 
         ## apt upgrade nvidia-container-toolkit nvidia-container-toolkit-base
 
 * 이제 logout 하고 다시 login 하자.
 
         $ id
-        uid=1002(etriai02) gid=1002(etriai02) groups=1002(etriai02),999(docker)
+        uid=1005(etriai05) gid=1005(etriai05) groups=1005(etriai05),999(docker)
 
         $ docker run --gpus all nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04 nvidia-smi
         Unable to find image 'nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04' locally
@@ -35,10 +35,10 @@
 
         # apt update && apt install -y git wget
 
-* 아래 `etriai02` 및 `1002` 는 현재 로그인한 계정에 맞게 바꾸어 실행한다.
+* 아래 `etriai05` 및 `1005` 는 현재 로그인한 계정에 맞게 바꾸어 실행한다.
 
-        # groupadd -g 1002 etriai02
-        # useradd -u 1002 -g 1002 -d /home/etriai02 -s /bin/bash etriai02
-        # su - etriai02
+        # groupadd -g 1005 etriai05
+        # useradd -u 1005 -g 1005 -d /home/etriai05 -s /bin/bash etriai05
+        # su - etriai05
 
 Now see [ESPNet](./ESPNet.md)

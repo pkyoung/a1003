@@ -26,4 +26,4 @@ for key in hyp:
     N += n
     E += e
 
-print("N= %d E= %d WER= %5.2f" %(N, E, E/N*100), file=sys.stderr)
+print("N= %d E= %d CER= %5.2f" %(N, E, E/N*100), file=sys.stderr)

@@ -1,14 +1,13 @@
 #!/bin/bash -eu
 
 # Configuraiton
-data=/Lxdata/A1003/db/navidlg
-model=/Lxdata/A1003/models/ha16k2310c/avg50_10.mdl
-odir=./result
+data=./data/eval_clean
+model=./models/ma16k2401c/final.mdl
+odir=./results
 conf=conf/decode_asr.yaml
 # End of Configuraiton
 
-. ./path.sh
-. ./utils/parse_options.sh
+[ -f ./utils/parse_options.sh ] && . ./utils/parse_options.sh
 
 mkdir -p $odir/log
 

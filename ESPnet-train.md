@@ -1,42 +1,32 @@
 
-# Install ESPnet and setting up enviroment
-
-## Cleanup my account
-
-        $ rm -rf ~/a1003
+# Install ESPnet for inference only
 
 ## Install ESPnet
 See [ESPnet Installation] page.
 
-        $ export PATH=/usr/local/cuda/bin:$PATH
-        $ mkdir -p ~/a1003
-        $ cd ~/a1003
+        $ cd
 
         $ git clone https://github.com/espnet/espnet
 
-        $ cd ~/a1003/espnet/tools
+        $ cd ~/espnet/tools
         $ ./setup_anaconda.sh miniconda espnet 3.8
         $ make
         $ git clone --depth 1 https://github.com/kaldi-asr/kaldi
-
-To clean installation
-
-        $ conda env remove -n espnet
 
 [ESPnet Installation]: https://espnet.github.io/espnet/installation.html
 
 ## Now download a1003
 
-        $ cd ~/a1003
-        $ git clone https://github.com/pkyoung/a1003 ./asr-train
+        $ cd
+        $ git clone https://github.com/pkyoung/a1003.git
 
-        $ cd ~/a1003/asr-train
+        $ cd ~/a1003
         $ ls
 
-        $ ls -l ~/a1003/espnet/egs2/TEMPLATE/asr1/
-        $ ls -l ~/a1003/espnet/egs2/ksponspeech/asr1/
+        $ ls -l ~/espnet/egs2/TEMPLATE/asr1/
+        $ ls -l ~/espnet/egs2/ksponspeech/asr1/
 
-        $ ln -sf ~/a1003/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
+        $ ln -sf ~/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
 
 Edit `path.sh`.
 
@@ -50,22 +40,22 @@ Edit `path.sh`.
 ### Select train data
 We will use data from AIHub [[KsponSpeech]]. List of files are mode for convenience.
 
-        (espnet)$ cd ~/a1003/asr-train/data/
+        (espnet)$ cd ~/a1003/data/
         (espnet)$ tar xvzf ks.tgz
 
 Choose one of following 3 options:
 
-        (espnet)$ cd ~/a1003/asr-train/data/ks
+        (espnet)$ cd ~/a1003/data/ks
         (espnet)$ cat uttid.01 uttid.03 uttid.05 > uttid.train
 
 or
 
-        (espnet)$ cd ~/a1003/asr-train/data/ks
+        (espnet)$ cd ~/a1003/data/ks
         (espnet)$ cat uttid.01 uttid.03 > uttid.train
 
 or
 
-        (espnet)$ cd ~/a1003/asr-train/data/ks
+        (espnet)$ cd ~/a1003/data/ks
         (espnet)$ cat uttid.01 > uttid.train
 
 [KsponSpeech]: https://aihub.or.kr/aihubdata/data/view.do?currMenu=&topMenu=&aihubDataSe=realm&dataSetSn=123
@@ -78,7 +68,7 @@ Prepare data director in Kaldi format. We need 4 files.
 * `utt2spk`: mapping of utterence id to speaker id
 * `spk2utt`: mapping of speaker id to utterence id
 
-        (espnet)$ cd ~/a1003/asr-train
+        (espnet)$ cd ~/a1003
 
         (espnet)$ mkdir -p data/train
         (espnet)$ filter_scp.pl data/ks/uttid.train data/ks/wav.scp > data/train/wav.scp
@@ -99,7 +89,7 @@ Prepare data director in Kaldi format. We need 4 files.
         (espnet)$ cp data/test/spk2utt data/test/utt2spk
 
 
-## Run trining with asr.sh
+## Run training with asr.sh
 Do it step by step (for convenience of explanation)
 
 ### run asr.sh: stage3-5
@@ -143,15 +133,15 @@ Open `data/ko_token_list/char/tokens.txt` or `data/ko_token_list/bpe_unigram5000
 
 or
 
-        (espnet)$ tensorboard --logdir ~/a1003/asr-train/exp
+        (espnet)$ tensorboard --logdir ~/a1003/exp
 
 or
 
-        (espnet)$ tensorboard --logdir ~/a1003/asr-train/exp --bind_all
+        (espnet)$ tensorboard --logdir ~/a1003/exp --bind_all
 
 * See `exp/myasr/train.log`
 
-        (espnet)$ tail -f ~/a1003/asr-train/exp/train.log
+        (espnet)$ tail -f ~/a1003/exp/train.log
 
 Output looks like:
 

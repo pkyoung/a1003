@@ -19,19 +19,19 @@ In Jupyter Lab, open `play-wav.ipynb`
 * Mel-filterbank
 * Specaug
 
-## Install Espnet
-See [ESPnet.md](./ESPnet.md)
+## Install Espnet for training
+See [ESPnet-train.md](./ESPnet-train.md)
 
-## ASR with ESPnet
-See [ESPnet.md](./ESPnet.md)
 * Data preparation
 * Training
-* Asess
+* Assessment
+
+## Install Espnet for inference only
+See [ESPnet-inference.md](./ESPnet-inference.md)
+
+* Data and model preparatoin
+* Inference
+* Scoring
 
 ## ASR with OpenAI Whisper and Whiser-X
 See [Whisper.md](./Whisper.md)
-
-## ESPnet with BackendAI
-Obsolete. See [ESPnet-BackendAI.md](./ESPnet-BackendAI.md)
-
-

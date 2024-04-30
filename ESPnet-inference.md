@@ -25,9 +25,9 @@ Download models from huggingface
         (a1003)$ cd a1003
         (a1003)$ mkdir -p models
         (a1003)$ cd models
-        (a1003)$ git clone git@huggingface.co:pkyoung/ma16k2401a
-        (a1003)$ git clone git@huggingface.co:pkyoung/ma16k2401b
-        (a1003)$ git clone git@huggingface.co:pkyoung/ma16k2401c
+        (a1003)$ git clone https://hf.co/pkyoung/ma16k2401a
+        (a1003)$ git clone https://hf.co/pkyoung/ma16k2401b
+        (a1003)$ git clone https://hf.co/pkyoung/ma16k2401c
 
 
 ## Run inference

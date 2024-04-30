@@ -7,6 +7,13 @@
         pip install espnet torchaudio
         conda install kaldi
 
+## Download espnet code for review
+
+        cd ~
+        git clone https://github.com/espnet/espnet
+
+Open `~/espent` directory in VScode
+
 ## Download ASR models
 
 `git lfs` is required

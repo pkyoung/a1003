@@ -3,38 +3,55 @@
 
 ## Before install
 
-Disable auto_activate_base if conda installed
-
-        conda config --set auto_activate_base false
+* Download conda
+    ```          
+    wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
+    ```
+    
+* Install
+    ```
+    sh Miniforge3-Linux-x86_64.sh
+    ```
         
+* Disable auto_activate_base if conda installed
+    ```
+    conda config --set auto_activate_base false
+    ```
+
 ## Install ESPnet
 See [ESPnet Installation] page.
 
         $ cd
+* clone source
+    ```
+    git clone https://github.com/espnet/espnet
+    ```
 
-        $ git clone https://github.com/espnet/espnet
-
-        $ cd ~/espnet/tools
-        $ ./setup_anaconda.sh miniconda espnet 3.8
-        $ make
-        $ git clone --depth 1 https://github.com/kaldi-asr/kaldi
+* setup env
+    ```
+    cd ~/espnet/tools
+    ./setup_miniforge.sh ~/miniforge3 espnet 3.10
+    ```
+* install
+    ```
+    make
+    ```
 
 [ESPnet Installation]: https://espnet.github.io/espnet/installation.html
 
 ## Now download a1003
 
-        $ cd
-        $ git clone https://github.com/pkyoung/a1003.git
+* clone source
+        cd
+        git clone https://github.com/pkyoung/a1003.git
 
-        $ cd ~/a1003
-        $ ls
-
-        $ ls -l ~/espnet/egs2/TEMPLATE/asr1/
-        $ ls -l ~/espnet/egs2/ksponspeech/asr1/
-
-        $ ln -sf ~/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
-
-Edit `path.sh`.
+* make soft link
+    ```
+    cd ~/a1003
+    ln -sf ~/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
+    ```
+    
+* Edit `path.sh`.
 
         $ source path.sh
         (espnet)$ ls
@@ -74,26 +91,32 @@ Prepare data director in Kaldi format. We need 4 files.
 * `utt2spk`: mapping of utterence id to speaker id
 * `spk2utt`: mapping of speaker id to utterence id
 
-        (espnet)$ cd ~/a1003
+        cd ~/a1003
 
-        (espnet)$ mkdir -p data/train
-        (espnet)$ filter_scp.pl data/ks/uttid.train data/ks/wav.scp > data/train/wav.scp
-        (espnet)$ filter_scp.pl data/ks/uttid.train data/ks/text > data/train/text
-        (espnet)$ awk '{print $1 " " $1}' data/train/wav.scp > data/train/spk2utt
-        (espnet)$ cp data/train/spk2utt data/train/utt2spk
-
-        (espnet)$ mkdir -p data/dev
-        (espnet)$ filter_scp.pl data/ks/uttid.dev data/ks/wav.scp > data/dev/wav.scp
-        (espnet)$ filter_scp.pl data/ks/uttid.dev data/ks/text > data/dev/text
-        (espnet)$ awk '{print $1 " " $1}' data/dev/wav.scp > data/dev/spk2utt
-        (espnet)$ cp data/dev/spk2utt data/dev/utt2spk
-
-        (espnet)$ mkdir -p data/test
-        (espnet)$ filter_scp.pl data/ks/uttid.test data/ks/wav.scp > data/test/wav.scp
-        (espnet)$ filter_scp.pl data/ks/uttid.test data/ks/text > data/test/text
-        (espnet)$ awk '{print $1 " " $1}' data/test/wav.scp > data/test/spk2utt
-        (espnet)$ cp data/test/spk2utt data/test/utt2spk
-
+* generate train dir
+    ```     
+    mkdir -p data/train
+    filter_scp.pl data/ks/uttid.train data/ks/wav.scp > data/train/wav.scp
+    filter_scp.pl data/ks/uttid.train data/ks/text > data/train/text
+    awk '{print $1 " " $1}' data/train/wav.scp > data/train/spk2utt
+    cp data/train/spk2utt data/train/utt2spk
+    ```
+* generate dev dir
+    ```
+    mkdir -p data/dev
+    filter_scp.pl data/ks/uttid.dev data/ks/wav.scp > data/dev/wav.scp
+    filter_scp.pl data/ks/uttid.dev data/ks/text > data/dev/text
+    awk '{print $1 " " $1}' data/dev/wav.scp > data/dev/spk2utt
+    cp data/dev/spk2utt data/dev/utt2spk
+    ```
+* generate test dir
+    ```
+    mkdir -p data/test
+    filter_scp.pl data/ks/uttid.test data/ks/wav.scp > data/test/wav.scp
+    filter_scp.pl data/ks/uttid.test data/ks/text > data/test/text
+    awk '{print $1 " " $1}' data/test/wav.scp > data/test/spk2utt
+    cp data/test/spk2utt data/test/utt2spk
+    ```
 
 ## Run training with asr.sh
 Do it step by step (for convenience of explanation)

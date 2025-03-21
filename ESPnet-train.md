@@ -1,6 +1,12 @@
 
 # Install ESPnet for inference only
 
+## Before install
+
+Disable auto_activate_base if conda installed
+
+        conda config --set auto_activate_base false
+        
 ## Install ESPnet
 See [ESPnet Installation] page.
 

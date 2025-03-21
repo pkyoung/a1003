@@ -42,9 +42,10 @@ See [ESPnet Installation] page.
 ## Now download a1003
 
 * clone source
-        cd
-        git clone https://github.com/pkyoung/a1003.git
-
+    ```
+    cd
+    git clone https://github.com/pkyoung/a1003.git
+    ```
 * make soft link
     ```
     cd ~/a1003

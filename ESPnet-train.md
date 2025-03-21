@@ -52,7 +52,7 @@ See [ESPnet Installation] page.
     ln -sf ~/espnet/egs2/TEMPLATE/asr1/{steps,utils,pyscripts,scripts} .
     ```
     
-* Edit `path.sh`.
+* Edit `path.sh`, then
 
         $ source path.sh
         (espnet)$ ls
@@ -63,25 +63,26 @@ See [ESPnet Installation] page.
 
 ### Select train data
 We will use data from AIHub [[KsponSpeech]]. List of files are mode for convenience.
-
-        (espnet)$ cd ~/a1003/data/
-        (espnet)$ tar xvzf ks.tgz
-
+    ```
+    cd ~/a1003/data/
+    tar xvzf ks.tgz
+    ```
 Choose one of following 3 options:
-
-        (espnet)$ cd ~/a1003/data/ks
-        (espnet)$ cat uttid.01 uttid.03 uttid.05 > uttid.train
-
+    ```
+    cd ~/a1003/data/ks
+    cat uttid.01 uttid.03 uttid.05 > uttid.train
+    ```
 or
-
-        (espnet)$ cd ~/a1003/data/ks
-        (espnet)$ cat uttid.01 uttid.03 > uttid.train
-
+    ```
+    cd ~/a1003/data/ks
+    cat uttid.01 uttid.03 > uttid.train
+    ```
 or
-
-        (espnet)$ cd ~/a1003/data/ks
-        (espnet)$ cat uttid.01 > uttid.train
-
+    ```
+    cd ~/a1003/data/ks
+    cat uttid.01 > uttid.train
+    ```
+    
 [KsponSpeech]: https://aihub.or.kr/aihubdata/data/view.do?currMenu=&topMenu=&aihubDataSe=realm&dataSetSn=123
 
 ## Prepare data directory
@@ -91,9 +92,9 @@ Prepare data director in Kaldi format. We need 4 files.
 * `text`: mapping of utterence id to transcription
 * `utt2spk`: mapping of utterence id to speaker id
 * `spk2utt`: mapping of speaker id to utterence id
-
-        cd ~/a1003
-
+    ```
+    cd ~/a1003
+    ```
 * generate train dir
     ```     
     mkdir -p data/train

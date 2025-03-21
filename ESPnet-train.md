@@ -21,9 +21,9 @@
 ## Install ESPnet
 See [ESPnet Installation] page.
 
-        $ cd
 * clone source
     ```
+    cd
     git clone https://github.com/espnet/espnet
     ```
 

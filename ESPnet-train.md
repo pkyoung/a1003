@@ -62,22 +62,26 @@ See [ESPnet Installation] page.
 ## Prepare data: train/valid/test
 
 ### Select train data
-We will use data from AIHub [[KsponSpeech]]. List of files are mode for convenience.
+* We will use data from AIHub [[KsponSpeech]]. List of files are mode for convenience.
     ```
     cd ~/a1003/data/
     tar xvzf ks.tgz
     ```
-Choose one of following 3 options:
+* Change path in `~a1003/data/ks/wav.scp` and corrent it 
+    ```
+    sed -i 's,/Lxdata/...,/some/correct/path,' ~a1003/data/ks/wav.scp
+    ```  
+* Choose **one** of following 3 options:
     ```
     cd ~/a1003/data/ks
     cat uttid.01 uttid.03 uttid.05 > uttid.train
     ```
-or
+* or
     ```
     cd ~/a1003/data/ks
     cat uttid.01 uttid.03 > uttid.train
     ```
-or
+* or
     ```
     cd ~/a1003/data/ks
     cat uttid.01 > uttid.train

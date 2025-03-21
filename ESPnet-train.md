@@ -34,7 +34,7 @@ See [ESPnet Installation] page.
     ```
 * install
     ```
-    make
+    make CUDA_VERSION=12.8
     ```
 
 [ESPnet Installation]: https://espnet.github.io/espnet/installation.html

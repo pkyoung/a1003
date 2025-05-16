@@ -27,7 +27,7 @@ huggingface에서 테스트용 데이터셋을 내려받습니다.
 9명의 화자가 20개의 짧은 문장을 발성한 wav 파일과 정답전사문 파일입니다.
 
 
-        cd ~/a1003
+        cd ~/a1003/local
         git clone https://hf.co/datasets/pkyoung/a1003.git ./data/a1003
 
 내려받은 파일을 확인해봅니다.

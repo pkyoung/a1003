@@ -33,7 +33,7 @@ ESPnet 툴킷을 이용하여 음성인식을 수행합니다. 본 실습에서�
 huggingface에서 테스트용 데이터셋을 내려받습니다. 9명의 화자가 각각 20개의 짧은
 문장을 발성한 wav 파일과 정답전사문 파일입니다.
 
-        cd ~/a1003
+        cd ~/a1003/local
         git clone https://hf.co/datasets/pkyoung/a1003.git ./data/a1003
 
 내려받은 파일을 확인해봅니다. 디렉토리의 구조는 다음과 같습니다.
@@ -69,7 +69,7 @@ ma16k2401b 모델과 ma16k2401c 모델도 내려받을 수 있습니다. 세 모
 
 Download models from huggingface
 
-        cd ~/a1003
+        cd ~/a1003/local
         mkdir -p models
         cd models
         git clone https://hf.co/pkyoung/ma16k2401a
@@ -85,8 +85,8 @@ Download models from huggingface
 
 `espnet-infer.sh` 파일을 열어서 필요한 설정을 변경하고 저장한 후 실행합니다.
 
-        cd ~/a1003
-        bash inference.sh
+        cd ~/a1003/local
+        bash espnet-infer.sh
 
 `$odir`에 저장된 결과 파일을 살펴봅니다. 예를 들어 `odir=results`라고 설정한
 경우, `results/1best_recog/text` 파일에 인식결과가 기록됩니다.
@@ -101,12 +101,12 @@ Download models from huggingface
 
 * 수행결과 사용
 
-        cd ~/a1003
+        cd ~/a1003/local
         cp results/1best_recog/text ./result.txt
 
 * 저장된 결과 사용
 
-        cd ~/a1003
+        cd ~/a1003/local
         cp data/a1003/result_espnet_ma16k2401a.txt ./result.txt
 
 * 음절 오류율 측정
